@@ -27,7 +27,8 @@ pub struct WebSearchToolCall {
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct FunctionToolCall {
-    pub id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
     pub call_id: String,
     pub name: String,
     pub arguments: String,
@@ -36,6 +37,7 @@ pub struct FunctionToolCall {
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct FunctionToolCallOutput {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
     pub call_id: String,
     pub output: String,
